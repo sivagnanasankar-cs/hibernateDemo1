@@ -23,15 +23,18 @@ public class StudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestData = CommonUtil.readFromReader(req.getReader());
-
-        StudentService studentService = StudentService.getInstance();
-        Gson gson = GsonUtil.getGson();
-        Student Student = gson.fromJson(requestData, Student.class);
-        Student = studentService.addStudent(Student);
-
         resp.setContentType(ResponseConstants.ContentType.APPLICATION_JSON);
+        Student student = GsonUtil.fromJson(requestData, Student.class);
+        if (CommonUtil.isValid(student)) {
+            student = StudentService.getInstance().addStudent(student);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            PrintWriter writer = resp.getWriter();
+            writer.write("Invalid student data");
+            writer.close();
+            return;
+        }
         resp.setStatus(HttpServletResponse.SC_CREATED);
-
         PrintWriter writer = resp.getWriter();
         writer.write("Student added successfully");
         writer.close();

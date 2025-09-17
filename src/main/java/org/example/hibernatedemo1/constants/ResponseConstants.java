@@ -5,7 +5,4 @@ public class ResponseConstants {
     public interface ContentType {
         String APPLICATION_JSON = "application/json";
     }
-
-
-
 }
