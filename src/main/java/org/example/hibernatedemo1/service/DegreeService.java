@@ -23,4 +23,9 @@ public class DegreeService {
         log.info("Adding degree {}", degree.toString());
         return DegreeDAO.getInstance().addDegree(degree);
     }
+
+    public Degree updateDegree(Degree degree) {
+        log.info("Updating degree {}", degree.toString());
+        return DegreeDAO.getInstance().updateDegree(degree);
+    }
 }

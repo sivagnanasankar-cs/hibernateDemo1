@@ -40,10 +40,31 @@ public class DegreeDAO {
                 try {
                     transaction.rollback();
                 } catch (Exception e1) {
-                    log.error("Exception in while rollback - ", e1);
+                    log.error("Exception in rollback while updating - ", e1);
                 }
             }
             throw new IllegalArgumentException(e);
+        }
+    }
+
+    public Degree updateDegree(Degree degree) {
+        log.info("Updating degree {}", GsonUtil.toJson(degree));
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction =  session.beginTransaction();
+            session.merge(degree);
+            transaction.commit();
+            return degree;
+        } catch (Exception e) {
+            log.error("Exception in updating degree - ", e);
+            if (CommonUtil.isValid(transaction) && transaction.isActive()) {
+                try {
+                    transaction.rollback();
+                } catch (Exception e1) {
+                    log.error("Exception in rollback while updating - ", e1);
+                }
+            }
+            throw new RuntimeException(e);
         }
     }
 }

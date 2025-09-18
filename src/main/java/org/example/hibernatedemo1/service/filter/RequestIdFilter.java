@@ -13,8 +13,8 @@ public class RequestIdFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-//        String requestId = UUID.randomUUID().toString();
-        String requestId = String.valueOf(System.nanoTime());
+        String requestId = UUID.randomUUID().toString();
+//        String requestId = String.valueOf(System.nanoTime());
         MDC.put("requestId", requestId);
 
         try {
