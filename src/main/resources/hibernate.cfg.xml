@@ -8,8 +8,8 @@
 
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/studentdb</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">2003</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
 
 <!--        &lt;!&ndash; JDBC connection pool (built-in) &ndash;&gt;-->
 <!--        <property name="hibernate.connection.pool_size">10</property>-->
@@ -25,6 +25,8 @@
 
         <!-- List your annotated entity classes -->
         <mapping class="org.example.hibernatedemo1.model.Student"/>
+        <mapping class="org.example.hibernatedemo1.model.Degree"/>
+        <mapping class="org.example.hibernatedemo1.model.Department" />
 
     </session-factory>
 </hibernate-configuration>
