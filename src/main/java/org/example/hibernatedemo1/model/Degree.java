@@ -15,10 +15,10 @@ public class Degree {
     @Column(name = "degree_id")
     private Integer degreeId;
 
-    @Column(name = "degree_code", nullable = false)
+    @Column(name = "degree_code", nullable = false, unique = true)
     private String degreeCode;
 
-    @Column(name = "degree_name", nullable = false)
+    @Column(name = "degree_name", nullable = false, unique = true)
     private String degreeName;
 
     @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true)

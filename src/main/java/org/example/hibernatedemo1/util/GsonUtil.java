@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class GsonUtil {
 
-
     private static final Gson gson;
 
     static {

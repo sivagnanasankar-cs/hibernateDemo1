@@ -7,11 +7,15 @@ import org.example.hibernatedemo1.util.GsonUtil;
 import org.example.hibernatedemo1.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
+//@Slf4j
 public class DegreeDAO {
 
     private static DegreeDAO instance = null;
+
+    private static final Logger log = LoggerFactory.getLogger(DegreeDAO.class);
 
     private DegreeDAO() {}
 
@@ -26,16 +30,20 @@ public class DegreeDAO {
         log.info("Adding degree {}", GsonUtil.toJson(degree));
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction =  session.getTransaction();
+            transaction =  session.beginTransaction();
             session.persist(degree);
             transaction.commit();
             return degree;
         } catch (Exception e) {
+            log.error("Exception in adding degree - ", e);
             if (CommonUtil.isValid(transaction) && transaction.isActive()) {
-                transaction.rollback();
+                try {
+                    transaction.rollback();
+                } catch (Exception e1) {
+                    log.error("Exception in while rollback - ", e1);
+                }
             }
-            log.error("Exception in adding degree - {}", e.getMessage());
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 }
