@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum SuccessCodes {
     DEGREE_ADDED_SUCCESSFULLY(200, "Degree added successfully"),
     DEGREE_UPDATED_SUCCESSFULLY(200, "Degree updated successfully"),
+    DEGREE_DELETED_SUCCESSFULLY(200, "Degree deleted successfully"),
 
     // student
     STUDENT_ADDED_SUCCESSFULLY(200, "Student added successfully"),

@@ -28,4 +28,13 @@ public class DegreeService {
         log.info("Updating degree {}", degree.toString());
         return DegreeDAO.getInstance().updateDegree(degree);
     }
+
+    public Degree getDegree(Integer id) {
+        log.info("Fetching a degree - id {}", id);
+        return DegreeDAO.getInstance().getDegree(id);
+    }
+
+    public Degree deleteDegree(Integer id) {
+        return DegreeDAO.getInstance().deleteDegree(id);
+    }
 }

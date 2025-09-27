@@ -5,11 +5,12 @@ import lombok.Getter;
 
 @Getter
 public enum ErrorCodes {
-    INVALID_DEGREE_DATA("ERR001", "Invalid degree data provided"),
+    INVALID_DEGREE_DATA("ERR_DE_001", "Invalid degree data provided"),
+    DEGREE_ID_IS_EMPTY("ERR_DE_002", "Degree id is empty"),
 
 
     // student
-    INVALID_STUDENT_DATA("ERR002", "Invalid student data provided"),
+    INVALID_STUDENT_DATA("ERR_ST_001", "Invalid student data provided"),
 
     ;
 

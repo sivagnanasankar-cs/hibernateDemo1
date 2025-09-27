@@ -21,6 +21,6 @@ public class Degree {
     @Column(name = "degree_name", nullable = false, unique = true)
     private String degreeName;
 
-    @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Department> departments;
 }
