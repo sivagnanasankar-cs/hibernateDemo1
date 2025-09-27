@@ -1,10 +1,26 @@
 package org.example.hibernatedemo1.model;
 
-import org.example.hibernatedemo1.enums.DegreeType;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.List;
+
+@Table(name = "degree")
+@Entity
+@Data
 public class Degree {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "degree_id")
     private Integer degreeId;
-    private DegreeType degreeType;
+
+    @Column(name = "degree_code", nullable = false, unique = true)
+    private String degreeCode;
+
+    @Column(name = "degree_name", nullable = false, unique = true)
     private String degreeName;
+
+    @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Department> departments;
 }

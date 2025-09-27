@@ -17,14 +17,16 @@
 
 
         <!-- Show SQL in console -->
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
+<!--        <property name="hibernate.show_sql">true</property>-->
+<!--        <property name="hibernate.format_sql">true</property>-->
 
         <!-- Automatically create/update schema -->
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- List your annotated entity classes -->
         <mapping class="org.example.hibernatedemo1.model.Student"/>
+        <mapping class="org.example.hibernatedemo1.model.Degree"/>
+        <mapping class="org.example.hibernatedemo1.model.Department" />
 
     </session-factory>
 </hibernate-configuration>
